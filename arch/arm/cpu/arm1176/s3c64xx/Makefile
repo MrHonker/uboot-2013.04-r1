@@ -32,6 +32,7 @@ SOBJS	= reset.o
 
 COBJS-$(CONFIG_S3C6410)	+= cpu_init.o speed.o
 COBJS-y	+= timer.o init.o
+COBJS-$(CONFIG_BOOT_SD) += s3c6410_sdboot.o
 
 OBJS	:= $(addprefix $(obj),$(SOBJS) $(COBJS-y))
 

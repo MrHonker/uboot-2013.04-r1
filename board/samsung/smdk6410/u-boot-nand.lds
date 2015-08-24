@@ -35,6 +35,7 @@ SECTIONS
 	.text      :
 	{
 	  arch/arm/cpu/arm1176/start.o	(.text)
+	  board/samsung/smdk6410/libsmdk6410.o (.text)
 	  *(.text)
 	}
 

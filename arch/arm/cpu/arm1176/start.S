@@ -224,8 +224,17 @@ skip_tcmdisable:
 	 */
 	bl	lowlevel_init		/* go setup pll,mux,memory */
 
-	bl	_main
 
+#if defined (CONFIG_BOOT_SD) && !defined (CONFIG_NAND_SPL)
+	ldr    sp,=CONFIG_SYS_INIT_SP_ADDR
+        bl     BootCopyMMCtoMem
+	cmp    r0,#0
+copyerror:
+	beq copyerror
+	ldr 	pc,=_main
+#else
+	bl	_main
+#endif
 /*------------------------------------------------------------------------------*/
 
 /*
